@@ -2,14 +2,12 @@
 {
     public class Day1
     {
-        public int GetSumOfNumbers()
+        public int GetSumOfNumbers(string input)
         {
-            var input = GetInput();
-
             var sum = 0;
             using (var reader = new StringReader(input))
             {
-                string line;
+                string? line;
                 while ((line = reader.ReadLine()) != null)
                 {
                     var number = GetNumber(line);
@@ -57,13 +55,6 @@
             }
 
             throw new Exception("No numeric character in the line provided.");
-        }
-
-        private string GetInput()
-        {
-            return @"two934seven1
-                8825eightknfv
-                sevenoneqbfzntsix55";
         }
     }
 }
