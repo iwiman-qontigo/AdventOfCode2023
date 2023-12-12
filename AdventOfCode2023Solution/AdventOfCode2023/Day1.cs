@@ -44,17 +44,6 @@
             throw new Exception("No numeric character in the line provided.");
         }
 
-        private char GetLastDigit(string line)
-        {
-            foreach (var character in line.Reverse())
-            {
-                if (int.TryParse(character.ToString(), out _))
-                {
-                    return character;
-                }
-            }
-
-            throw new Exception("No numeric character in the line provided.");
-        }
+        private char GetLastDigit(string line) => GetFirstDigit(string.Concat(line.Reverse()));
     }
 }
