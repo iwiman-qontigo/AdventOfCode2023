@@ -10,7 +10,7 @@ namespace AdventOfCode2023Tests
         {
             var input = @"two934seven1";
 
-            var actual = new Day1().GetSumOfNumbers(input);
+            var actual = Day1.GetSumOfNumbers(input);
             var expected = 91;
 
             Assert.That(actual, Is.EqualTo(expected));
@@ -23,7 +23,7 @@ namespace AdventOfCode2023Tests
                 8825eightknfv
                 sevenoneqbfzntsix55";
 
-            var actual = new Day1().GetSumOfNumbers(input);
+            var actual = Day1.GetSumOfNumbers(input);
             var expected = 231;
 
             Assert.That(actual, Is.EqualTo(expected));

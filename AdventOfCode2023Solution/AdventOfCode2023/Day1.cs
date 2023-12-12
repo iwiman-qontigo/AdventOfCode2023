@@ -1,8 +1,8 @@
 ﻿namespace AdventOfCode2023
 {
-    public class Day1
+    public static class Day1
     {
-        public int GetSumOfNumbers(string input)
+        public static int GetSumOfNumbers(string input)
         {
             var sum = 0;
             using (var reader = new StringReader(input))
@@ -18,7 +18,7 @@
             return sum;
         }
 
-        private int GetNumber(string rawLine)
+        private static int GetNumber(string rawLine)
         {
             var line = rawLine.Trim();
 
@@ -31,11 +31,11 @@
             return int.Parse(fullNumber);
         }
 
-        private char GetFirstDigit(string line)
+        private static char GetFirstDigit(string line)
         {
             foreach (var character in line)
             {
-                if (int.TryParse(character.ToString(), out _))
+                if (char.IsNumber(character))
                 {
                     return character;
                 }
@@ -44,6 +44,6 @@
             throw new Exception("No numeric character in the line provided.");
         }
 
-        private char GetLastDigit(string line) => GetFirstDigit(string.Concat(line.Reverse()));
+        private static char GetLastDigit(string line) => GetFirstDigit(string.Concat(line.Reverse()));
     }
 }
