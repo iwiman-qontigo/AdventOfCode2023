@@ -2,7 +2,7 @@
 {
     public static class Day1
     {
-        public static int GetSumOfNumbers(string input)
+        public static int Day1Part1Main(string input)
         {
             var sum = 0;
             using (var reader = new StringReader(input))
