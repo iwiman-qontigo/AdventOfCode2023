@@ -3,15 +3,26 @@ using NUnit.Framework;
 
 namespace AdventOfCode2023Tests
 {
-    public class Day1Tests
+    public class Day1Part2Tests
     {
         [Test]
         public void OneLineTest()
         {
             var input = @"two934seven1";
 
-            var actual = Day1.Day1Part1Main(input);
-            var expected = 91;
+            var actual = Day1Part2.Day1Part2Main(input);
+            var expected = 21;
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void OneLineTest2()
+        {
+            var input = @"8825eightknfv";
+
+            var actual = Day1Part2.Day1Part2Main(input);
+            var expected = 88;
 
             Assert.That(actual, Is.EqualTo(expected));
         }
@@ -23,7 +34,7 @@ namespace AdventOfCode2023Tests
                 8825eightknfv
                 sevenoneqbfzntsix55";
 
-            var actual = Day1.Day1Part1Main(input);
+            var actual = Day1Part2.Day1Part2Main(input);
             var expected = 231;
 
             Assert.That(actual, Is.EqualTo(expected));
@@ -34,7 +45,7 @@ namespace AdventOfCode2023Tests
         {
             var input = @"  two934seven1   ";
 
-            var actual = Day1.Day1Part1Main(input);
+            var actual = Day1Part2.Day1Part2Main(input);
             var expected = 91;
 
             Assert.That(actual, Is.EqualTo(expected));
@@ -45,7 +56,7 @@ namespace AdventOfCode2023Tests
         {
             var input = @"two934s    even1";
 
-            var actual = Day1.Day1Part1Main(input);
+            var actual = Day1Part2.Day1Part2Main(input);
             var expected = 91;
 
             Assert.That(actual, Is.EqualTo(expected));
@@ -1057,7 +1068,7 @@ namespace AdventOfCode2023Tests
                 fivebxsevensixone872dlx";
             #endregion
 
-            var actual = Day1.Day1Part1Main(input);
+            var actual = Day1Part2.Day1Part2Main(input);
             var expected = 52974;
 
             Assert.That(actual, Is.EqualTo(expected));

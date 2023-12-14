@@ -1,6 +1,6 @@
 ﻿namespace AdventOfCode2023
 {
-    public static class Day1
+    public static class Day1Part1
     {
         public static int Day1Part1Main(string input)
         {
@@ -23,7 +23,7 @@
             var line = rawLine.Trim();
 
             var firstDigit = GetFirstDigit(line);
-            
+
             var lastDigit = GetLastDigit(line);
 
             var fullNumber = $"{firstDigit}{lastDigit}";
