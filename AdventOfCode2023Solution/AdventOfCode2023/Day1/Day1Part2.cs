@@ -11,7 +11,7 @@
                 while ((rawLine = reader.ReadLine()) != null)
                 {
                     var line = rawLine.Trim();
-                    var number = GetNumber(line);
+                    var number = GetNumberFromLine(line);
                     sum += number;
                 }
             }
@@ -19,7 +19,7 @@
             return sum;
         }
 
-        private static int GetNumber(string line)
+        private static int GetNumberFromLine(string line)
         {
             var firstDigit = GetDigit(line, isFirstDigit: true);
 
@@ -42,7 +42,7 @@
                     return character;
                 }
 
-                // If the character is not a number, we have to check if we already have a number as word.
+                // If the character is not a number, we have to check if we have a number as word.
                 var index = isFirstDigit ? accumulatedCharacters.Length : 0;
                 accumulatedCharacters = accumulatedCharacters.Insert(index, character.ToString());
 
