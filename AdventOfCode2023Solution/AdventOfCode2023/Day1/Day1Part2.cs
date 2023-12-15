@@ -7,9 +7,10 @@
             var sum = 0;
             using (var reader = new StringReader(input))
             {
-                string? line;
-                while ((line = reader.ReadLine()) != null)
+                string? rawLine;
+                while ((rawLine = reader.ReadLine()) != null)
                 {
+                    var line = rawLine.Trim();
                     var number = GetNumber(line);
                     sum += number;
                 }
@@ -18,10 +19,8 @@
             return sum;
         }
 
-        private static int GetNumber(string rawLine)
+        private static int GetNumber(string line)
         {
-            var line = rawLine.Trim();
-
             var firstDigit = GetFirstDigit(line);
 
             var lastDigit = GetLastDigit(line);
