@@ -33,18 +33,7 @@
 
         private static char GetFirstDigit(string line)
         {
-            var numbersAsText = new Dictionary<string, char> 
-            {
-                ["one"] = '1',
-                ["two"] = '2',
-                ["three"] = '3',
-                ["four"] = '4',
-                ["five"] = '5',
-                ["six"] = '6',
-                ["seven"] = '7',
-                ["eight"] = '8',
-                ["nine"] = '9'
-            };
+            var numbersAsText = GetNumersAsTextDictionary();
 
             var accumulatedCharacters = "";
 
@@ -69,6 +58,48 @@
             throw new Exception("No numeric character in the line provided.");
         }
 
-        private static char GetLastDigit(string line) => GetFirstDigit(string.Concat(line.Reverse()));
+        private static char GetLastDigit(string line)
+        {
+            var numbersAsText = GetNumersAsTextDictionary();
+
+            var reversedLine = string.Concat(line.Reverse());
+
+            var accumulatedCharacters = "";
+
+            foreach (var character in reversedLine)
+            {
+                if (char.IsNumber(character))
+                {
+                    return character;
+                }
+
+                accumulatedCharacters += character;
+
+                foreach (var (numberAsText, associatedNumber) in numbersAsText)
+                {
+                    var reversedAccumulatedCharacters = string.Concat(accumulatedCharacters.Reverse());
+
+                    if (reversedAccumulatedCharacters.Contains(numberAsText))
+                    {
+                        return associatedNumber;
+                    }
+                }
+            }
+
+            throw new Exception("No numeric character in the line provided.");
+        }
+
+        private static Dictionary<string, char> GetNumersAsTextDictionary() => new Dictionary<string, char>
+        {
+            ["one"] = '1',
+            ["two"] = '2',
+            ["three"] = '3',
+            ["four"] = '4',
+            ["five"] = '5',
+            ["six"] = '6',
+            ["seven"] = '7',
+            ["eight"] = '8',
+            ["nine"] = '9'
+        };
     }
 }

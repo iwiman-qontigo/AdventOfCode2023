@@ -35,7 +35,7 @@ namespace AdventOfCode2023Tests
                 sevenoneqbfzntsix55";
 
             var actual = Day1Part2.Day1Part2Main(input);
-            var expected = 231;
+            var expected = 184;
 
             Assert.That(actual, Is.EqualTo(expected));
         }
@@ -46,7 +46,7 @@ namespace AdventOfCode2023Tests
             var input = @"  two934seven1   ";
 
             var actual = Day1Part2.Day1Part2Main(input);
-            var expected = 91;
+            var expected = 21;
 
             Assert.That(actual, Is.EqualTo(expected));
         }
@@ -57,7 +57,7 @@ namespace AdventOfCode2023Tests
             var input = @"two934s    even1";
 
             var actual = Day1Part2.Day1Part2Main(input);
-            var expected = 91;
+            var expected = 21;
 
             Assert.That(actual, Is.EqualTo(expected));
         }
@@ -1069,7 +1069,7 @@ namespace AdventOfCode2023Tests
             #endregion
 
             var actual = Day1Part2.Day1Part2Main(input);
-            var expected = 52974;
+            var expected = 53340;
 
             Assert.That(actual, Is.EqualTo(expected));
         }
