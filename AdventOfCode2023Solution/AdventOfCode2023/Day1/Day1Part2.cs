@@ -33,8 +33,6 @@
 
         private static char GetFirstDigit(string line)
         {
-            var numbersAsText = GetNumersAsTextDictionary();
-
             var accumulatedCharacters = "";
 
             foreach (var character in line)
@@ -46,12 +44,10 @@
 
                 accumulatedCharacters += character;
 
-                foreach (var (numberAsText, associatedNumber) in numbersAsText)
+                var (hasNumberAsText, associatedNumber) = HasNumberAsText(accumulatedCharacters);
+                if (hasNumberAsText)
                 {
-                    if (accumulatedCharacters.Contains(numberAsText))
-                    {
-                        return associatedNumber;
-                    }
+                    return associatedNumber;
                 }
             }
 
@@ -60,8 +56,6 @@
 
         private static char GetLastDigit(string line)
         {
-            var numbersAsText = GetNumersAsTextDictionary();
-
             var reversedLine = string.Concat(line.Reverse());
 
             var accumulatedCharacters = "";
@@ -75,21 +69,32 @@
 
                 accumulatedCharacters += character;
 
-                foreach (var (numberAsText, associatedNumber) in numbersAsText)
+                var (hasNumberAsText, associatedNumber) = HasNumberAsText(string.Concat(accumulatedCharacters.Reverse()));
+                if (hasNumberAsText)
                 {
-                    var reversedAccumulatedCharacters = string.Concat(accumulatedCharacters.Reverse());
-
-                    if (reversedAccumulatedCharacters.Contains(numberAsText))
-                    {
-                        return associatedNumber;
-                    }
+                    return associatedNumber;
                 }
             }
 
             throw new Exception("No numeric character in the line provided.");
         }
 
-        private static Dictionary<string, char> GetNumersAsTextDictionary() => new Dictionary<string, char>
+        private static (bool, char) HasNumberAsText(string accumulatedCharacters)
+        {
+            var numbersAsText = GetNumbersAsTextDictionary();
+
+            foreach (var (numberAsText, associatedNumber) in numbersAsText)
+            {
+                if (accumulatedCharacters.Contains(numberAsText))
+                {
+                    return (true, associatedNumber);
+                }
+            }
+
+            return (false, ' ');
+        }
+
+        private static Dictionary<string, char> GetNumbersAsTextDictionary() => new Dictionary<string, char>
         {
             ["one"] = '1',
             ["two"] = '2',
