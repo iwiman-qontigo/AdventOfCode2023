@@ -21,19 +21,20 @@
 
         private static int GetNumber(string line)
         {
-            var firstDigit = GetFirstDigit(line);
+            var firstDigit = GetDigit(line, isFirstDigit: true);
 
-            var lastDigit = GetLastDigit(line);
+            var lastDigit = GetDigit(line, isFirstDigit: false);
 
             var fullNumber = $"{firstDigit}{lastDigit}";
 
             return int.Parse(fullNumber);
         }
 
-        private static char GetFirstDigit(string line)
+        private static char GetDigit(string line, bool isFirstDigit)
         {
-            var accumulatedCharacters = "";
+            line = isFirstDigit ? line : string.Concat(line.Reverse());
 
+            var accumulatedCharacters = "";
             foreach (var character in line)
             {
                 if (char.IsNumber(character))
@@ -41,34 +42,10 @@
                     return character;
                 }
 
-                accumulatedCharacters += character;
+                var index = isFirstDigit ? accumulatedCharacters.Length : 0;
+                accumulatedCharacters = accumulatedCharacters.Insert(index, character.ToString());
 
                 var (hasNumberAsText, associatedNumber) = HasNumberAsText(accumulatedCharacters);
-                if (hasNumberAsText)
-                {
-                    return associatedNumber;
-                }
-            }
-
-            throw new Exception("No numeric character in the line provided.");
-        }
-
-        private static char GetLastDigit(string line)
-        {
-            var reversedLine = string.Concat(line.Reverse());
-
-            var accumulatedCharacters = "";
-
-            foreach (var character in reversedLine)
-            {
-                if (char.IsNumber(character))
-                {
-                    return character;
-                }
-
-                accumulatedCharacters += character;
-
-                var (hasNumberAsText, associatedNumber) = HasNumberAsText(string.Concat(accumulatedCharacters.Reverse()));
                 if (hasNumberAsText)
                 {
                     return associatedNumber;
