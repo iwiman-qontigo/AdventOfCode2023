@@ -21,14 +21,17 @@
 
         private static int GetNumberFromLine(string line)
         {
-            var firstDigit = GetDigit(line, isFirstDigit: true);
+            var firstDigit = GetFirstDigit(line);
 
-            var lastDigit = GetDigit(line, isFirstDigit: false);
+            var lastDigit = GetLastDigit(line);
 
             var fullNumber = $"{firstDigit}{lastDigit}";
 
             return int.Parse(fullNumber);
         }
+
+        private static char GetFirstDigit(string line) => GetDigit(line, isFirstDigit: true);
+        private static char GetLastDigit(string line) => GetDigit(line, isFirstDigit: false);
 
         private static char GetDigit(string line, bool isFirstDigit)
         {

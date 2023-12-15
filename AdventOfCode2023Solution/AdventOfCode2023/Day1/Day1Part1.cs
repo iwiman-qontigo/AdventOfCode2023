@@ -31,7 +31,6 @@
         }
 
         private static char GetFirstDigit(string line) => GetDigit(line, isFirstDigit: true);
-
         private static char GetLastDigit(string line) => GetDigit(line, isFirstDigit: false);
 
         private static char GetDigit(string line, bool isFirstDigit)
