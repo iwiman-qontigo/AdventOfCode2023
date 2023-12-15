@@ -42,35 +42,36 @@
                     return character;
                 }
 
+                // If the character is not a number, we have to check if we already have a number as word.
                 var index = isFirstDigit ? accumulatedCharacters.Length : 0;
                 accumulatedCharacters = accumulatedCharacters.Insert(index, character.ToString());
 
-                var (hasNumberAsText, associatedNumber) = HasNumberAsText(accumulatedCharacters);
-                if (hasNumberAsText)
+                var (hasNumberAsWord, associatedNumberAsChar) = HasNumberAsWord(accumulatedCharacters);
+                if (hasNumberAsWord)
                 {
-                    return associatedNumber;
+                    return associatedNumberAsChar;
                 }
             }
 
             throw new Exception("No numeric character in the line provided.");
         }
 
-        private static (bool, char) HasNumberAsText(string accumulatedCharacters)
+        private static (bool, char) HasNumberAsWord(string accumulatedCharacters)
         {
-            var numbersAsText = GetNumbersAsTextDictionary();
+            var numbersAsWord = GetNumbersAsWordsDictionary();
 
-            foreach (var (numberAsText, associatedNumber) in numbersAsText)
+            foreach (var (numberAsWord, associatedNumberAsChar) in numbersAsWord)
             {
-                if (accumulatedCharacters.Contains(numberAsText))
+                if (accumulatedCharacters.Contains(numberAsWord))
                 {
-                    return (true, associatedNumber);
+                    return (true, associatedNumberAsChar);
                 }
             }
 
             return (false, ' ');
         }
 
-        private static Dictionary<string, char> GetNumbersAsTextDictionary() => new Dictionary<string, char>
+        private static Dictionary<string, char> GetNumbersAsWordsDictionary() => new Dictionary<string, char>
         {
             ["one"] = '1',
             ["two"] = '2',
