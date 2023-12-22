@@ -1,4 +1,4 @@
-name: docfx for GitHub Pages2
+name: docfx for GitHub Pages
 
 # Your GitHub workflow file under .github/workflows/
 # Trigger the action on push to main
@@ -43,7 +43,7 @@ jobs:
       uses: actions/upload-pages-artifact@v3
       with:
         # Upload entire repository
-        path: 'C:/Dev/AdventOfCode2023/_site'
+        path: '_site'
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4
