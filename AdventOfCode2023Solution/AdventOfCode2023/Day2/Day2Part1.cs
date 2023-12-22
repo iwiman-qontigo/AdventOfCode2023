@@ -2,6 +2,14 @@
 {
     public static class Day2Part1
     {
+        /// <summary>
+        /// Given a set of <see langword="string"/> lines each referencing a game, this method gives the sum of the game IDs
+        /// that could have been possible.
+        /// </summary>
+        /// <param name="input">The lines.</param>
+        /// <returns>
+        /// The sum of the game IDs that could have been possible.
+        /// </returns>
         public static int Day2Part1Main(string input)
         {
             var gameIds = new List<int>();

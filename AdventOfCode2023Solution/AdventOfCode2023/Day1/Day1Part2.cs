@@ -2,6 +2,19 @@
 {
     public static class Day1Part2
     {
+        /// <summary>
+        /// Given a set of <see langword="string"/> lines with numeric digits, this method takes the first and the last 
+        /// numerical digit of each line, forms a number concatenating those two digits, and then calculates the sum of all 
+        /// those numbers.
+        /// </summary>
+        /// <param name="input">The lines.</param>
+        /// <returns>
+        /// The sum of the numbers formed by each line.
+        /// </returns>
+        /// <remarks>
+        /// A word is also valid as a numerical digit. For example, if a line contains "1" or "one", the 
+        /// recognized <see langword="int"/> digit will be 1.
+        /// </remarks>
         public static int Day1Part2Main(string input)
         {
             var sum = 0;

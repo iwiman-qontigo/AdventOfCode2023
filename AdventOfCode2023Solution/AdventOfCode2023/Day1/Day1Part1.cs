@@ -2,6 +2,15 @@
 {
     public static class Day1Part1
     {
+        /// <summary>
+        /// Given a set of <see langword="string"/> lines with numeric digits, this method takes the first and the last 
+        /// numerical digit of each line, forms a number concatenating those two digits, and then calculates the sum of all 
+        /// those numbers.
+        /// </summary>
+        /// <param name="input">The lines.</param>
+        /// <returns>
+        /// The sum of the numbers formed by each line.
+        /// </returns>
         public static int Day1Part1Main(string input)
         {
             var sum = 0;

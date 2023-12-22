@@ -2,6 +2,14 @@
 {
     public static class Day2Part2
     {
+        /// <summary>
+        /// Given a set of <see langword="string"/> lines each referencing a game, this method gives the sum of powers of 
+        /// every game, where the power of a game is the multiplication of the amount of cubes of each color.
+        /// </summary>
+        /// <param name="input">The lines.</param>
+        /// <returns>
+        /// The sum of the powers of every game.
+        /// </returns>
         public static int Day2Part2Main(string input)
         {
             var gamePowers = new List<int>();
