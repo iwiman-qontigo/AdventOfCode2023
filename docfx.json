@@ -3,9 +3,9 @@
     {
       "src": [
         {
-          "src": "C:/Dev/AdventOfCode2023/AdventOfCode2023Solution/AdventOfCode2023",
+          "src": "AdventOfCode2023Solution/AdventOfCode2023",
           "files": [
-            "AdventOfCode2023.csproj"
+            "*.csproj"
           ]
         }
       ],
