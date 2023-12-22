@@ -37,6 +37,7 @@ jobs:
         dotnet-version: 6.x
 
     - run: dotnet tool update -g docfx
+    - run: ls -lR
     - run: docfx docfx.json
 
     - name: Upload artifact
