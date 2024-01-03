@@ -73,19 +73,24 @@
         {
             var numberIndices = new List<List<int>>();
             var currentNumberIndices = new List<int>();
-            var emptyList = new List<int>();
+            var lastCharacter = ' ';
+            var index = 0;
 
             foreach (var character in line)
             {
                 if (char.IsNumber(character))
                 {
-                    currentNumberIndices.Add(int.Parse(character.ToString()));
+                    currentNumberIndices.Add(index);
                 }
-                else
+                else if (char.IsNumber(lastCharacter))
                 {
                     numberIndices.Add(currentNumberIndices);
+                    var emptyList = new List<int>();
                     currentNumberIndices = emptyList;
                 }
+
+                lastCharacter = character;
+                index++;
             }
 
             return numberIndices;
@@ -169,7 +174,7 @@
 
         private static bool IsNotTheLastOne(this int lineNumber, List<List<int>> symbolIndices)
         {
-            return lineNumber != symbolIndices.Count;
+            return lineNumber != symbolIndices.Count - 1;
         }
 
         private static int ToValue(List<int> listOfIndices, string line)
