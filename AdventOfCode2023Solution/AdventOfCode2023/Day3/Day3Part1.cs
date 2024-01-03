@@ -44,6 +44,7 @@
             using (var reader = new StringReader(input))
             {
                 var sum = 0;
+                var currentLineNumber = 0;
 
                 string? rawLine;
                 while ((rawLine = reader.ReadLine()) != null)
@@ -54,17 +55,133 @@
 
                     foreach (var number in numberIndices)  // number = list of the indices of the same number
                     {
-                        foreach (var digitIndex in number)  // digitIndex = list of the indices of the digits of the same number
+                        if (HasAdjacentSymbol(number, currentLineNumber, symbolIndices))
                         {
-                            if (digitIndex.HasAdjacentSymbol)
-                            {
-                                break;
-                            }
+                            var value = ToValue(number, line);
+                            sum += value;
                         }
-                        sum += numberComoInt;
                     }
+
+                    currentLineNumber++;
+                }
+
+                return sum;
+            }
+        }
+
+        private static List<List<int>> GetNumberIndices(string line)
+        {
+            var numberIndices = new List<List<int>>();
+            var currentNumberIndices = new List<int>();
+            var emptyList = new List<int>();
+
+            foreach (var character in line)
+            {
+                if (char.IsNumber(character))
+                {
+                    currentNumberIndices.Add(int.Parse(character.ToString()));
+                }
+                else
+                {
+                    numberIndices.Add(currentNumberIndices);
+                    currentNumberIndices = emptyList;
                 }
             }
+
+            return numberIndices;
+        }
+
+        private static bool HasAdjacentSymbol(List<int> number, int currentLineNumber, List<List<int>> symbolIndices)
+        {
+            if (currentLineNumber != 0 && currentLineNumber.IsNotTheLastOne(symbolIndices))
+            {
+                if (CheckPreviousLine(number, currentLineNumber, symbolIndices) ||
+                    CheckSameLine(number, currentLineNumber, symbolIndices) ||
+                    CheckNextLine(number, currentLineNumber, symbolIndices))
+                {
+                    return true;
+                }
+            }
+            else if (currentLineNumber == 0)
+            {
+                if (CheckSameLine(number, currentLineNumber, symbolIndices) ||
+                    CheckNextLine(number, currentLineNumber, symbolIndices))
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                if (CheckPreviousLine(number, currentLineNumber, symbolIndices) ||
+                    CheckSameLine(number, currentLineNumber, symbolIndices))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+
+        }
+
+        private static bool CheckPreviousLine(List<int> number, int currentLineNumber, List<List<int>> symbolIndices)
+        {
+            foreach (var digitIndex in number)
+            {
+                if (symbolIndices[currentLineNumber - 1].Contains(digitIndex - 1) ||
+                    symbolIndices[currentLineNumber - 1].Contains(digitIndex) ||
+                    symbolIndices[currentLineNumber - 1].Contains(digitIndex + 1))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool CheckSameLine(List<int> number, int currentLineNumber, List<List<int>> symbolIndices)
+        {
+            foreach (var digitIndex in number)
+            {
+                if (symbolIndices[currentLineNumber].Contains(digitIndex - 1) ||
+                    symbolIndices[currentLineNumber].Contains(digitIndex + 1))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool CheckNextLine(List<int> number, int currentLineNumber, List<List<int>> symbolIndices)
+        {
+            foreach (var digitIndex in number)
+            {
+                if (symbolIndices[currentLineNumber + 1].Contains(digitIndex - 1) ||
+                    symbolIndices[currentLineNumber + 1].Contains(digitIndex) ||
+                    symbolIndices[currentLineNumber + 1].Contains(digitIndex + 1))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool IsNotTheLastOne(this int lineNumber, List<List<int>> symbolIndices)
+        {
+            return lineNumber != symbolIndices.Count;
+        }
+
+        private static int ToValue(List<int> listOfIndices, string line)
+        {
+            var number = "";
+
+            foreach (var index in listOfIndices)
+            {
+                number += line[index];
+            }
+
+            return int.Parse(number);
         }
     }
 }
